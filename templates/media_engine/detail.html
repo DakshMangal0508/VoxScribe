@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ recording.title }} | VoxScribe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+<div class="container py-5">
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-info btn-sm mb-3">&larr; Back to Dashboard</a>
+    <div class="card bg-secondary text-white p-4">
+        <h3>{{ recording.title }}</h3>
+        <p class="mb-2">Status: <span class="badge bg-warning text-dark">{{ recording.status }}</span> | Detected Language: <strong>{{ recording.spoken_language|upper }}</strong></p>
+        <hr>
+        <h5>Generated Transcript</h5>
+        <pre class="bg-dark text-light p-3 rounded" style="white-space: pre-wrap;">{{ recording.raw_transcript }}</pre>
+    </div>
+</div>
+</body>
+</html>

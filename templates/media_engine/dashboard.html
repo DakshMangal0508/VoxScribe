@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VoxScribe | Lecture ASR Studio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+<div class="container py-5">
+    <h2 class="mb-4 fw-bold text-info">VoxScribe — Multilingual Lecture ASR</h2>
+    <div class="card bg-secondary text-white mb-4 p-4">
+        <h5>Upload Audio / Video Recording</h5>
+        <form method="POST" enctype="multipart/form-data" class="row g-3 mt-1">
+            {% csrf_token %}
+            <div class="col-md-5">
+                <input type="text" name="title" class="form-control" placeholder="Lecture Title (optional)">
+            </div>
+            <div class="col-md-4">
+                <input type="file" name="source_file" class="form-control" accept="audio/*,video/*" required>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-info w-100 fw-semibold">Transcribe Now</button>
+            </div>
+        </form>
+    </div>
+
+    <h4>Recent Transcriptions</h4>
+    <div class="list-group mt-3">
+        {% for item in recordings %}
+        <a href="{% url 'recording_detail' item.uid %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ item.title }}</strong>
+                <small class="text-muted ms-2">[{{ item.spoken_language|upper }}]</small>
+            </div>
+            <span class="badge bg-primary rounded-pill">{{ item.status }}</span>
+        </a>
+        {% empty %}
+        <p class="text-secondary">No recordings processed yet.</p>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
