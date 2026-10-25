@@ -1,5 +1,3 @@
-from django.db import models
-
 import uuid
 from django.db import models
 
@@ -28,4 +26,4 @@ class LectureRecording(models.Model):
         ordering = ["-uploaded_on"]
 
     def __str__(self):
-        return f"{self.title} ({self.status})"# Create your models here.
+        return f"{self.title} ({self.status})"
