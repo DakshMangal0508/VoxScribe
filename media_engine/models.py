@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 
 
@@ -6,8 +7,8 @@ class LectureRecording(models.Model):
     class ProcessingState(models.TextChoices):
         QUEUED = "QUEUED", "Queued"
         PROCESSING = "PROCESSING", "Processing"
-        READY = "READY", "Completed"
-        ERROR = "ERROR", "Failed"
+        COMPLETED = "COMPLETED", "Completed"
+        FAILED = "FAILED", "Failed"
 
     uid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
